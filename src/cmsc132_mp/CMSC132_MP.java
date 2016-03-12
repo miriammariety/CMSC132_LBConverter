@@ -34,7 +34,7 @@ public class CMSC132_MP {
             //For integer inputs
             String[] ar = temp.split(" ");
             int [] numbers = new int[ar.length];
-            String [] binaryString = new String[ar.length];
+            String [] binaryString = new String[32];
             String[] eightBit = new String[ar.length];
             
             //Convert every integer input to binary
@@ -48,12 +48,19 @@ public class CMSC132_MP {
                     for(int ctr=0; ctr<zeros; ctr++){
                         tempBinary[i] = tempBinary[i] + "0";
                     }
-                    tempBinary[i] = tempBinary[i] + binaryString[i];
-                    System.out.println(tempBinary[i]);
+                    binaryString[i] = tempBinary[i] + binaryString[i];
+                    System.out.println(binaryString[i]);
+                }
+                
+                //Store 4 bits 
+                for(int index=0; index<binaryString.length; index++){
+                    for(int ctr=0; ctr<4; ctr++){
+                        eightBit[index] = eightBit[index] + binaryString[ctr];
+                    }
                 }
             }
             
-            //
+            
             
             System.out.println("BIG ENDIAN & LITTLE ENDIAN");
             System.out.println("REPRESENTATION FOR INTEGERS");

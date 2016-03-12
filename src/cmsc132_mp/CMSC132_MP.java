@@ -24,7 +24,6 @@ public class CMSC132_MP {
         char[] finalInput = new char[100];
         char[][] bigMemory = new char[input.length][4];
         char[][] smallMemory = new char[input.length][4];
-        int[][] numbMemory = new int[temp.length()][4];
         int inputSize = input.length;
         
         //Copy
@@ -37,10 +36,12 @@ public class CMSC132_MP {
             String [] binaryString = new String[ar.length];
             int [] eightBit = new int[4];
             
+            System.out.println("BIG ENDIAN & LITTLE ENDIAN");
+            System.out.println("REPRESENTATION FOR INTEGERS");
+            //Printing
             //Convert every integer input to binary
             for(int i=0; i < ar.length; i++){
                 binaryString[i] = Integer.toBinaryString(Integer.valueOf(ar[i]));
-                System.out.println(binaryString[i]);
                 if(binaryString[i].length() < 32){
                     int zeros = 32 - binaryString[i].length();
                     String tempBinary = new String();
@@ -50,7 +51,7 @@ public class CMSC132_MP {
                     binaryString[i] = tempBinary + binaryString[i];
                 }
                 
-                //Store 4 bits 
+                //Store 8 bits 
                 for(int index=0; index<binaryString[i].length();){
                     System.out.print(binaryString[i].charAt(index));
                     int indexEightBit = 0;
@@ -60,30 +61,9 @@ public class CMSC132_MP {
                         index++;
                     }
                     eightBit[indexEightBit] = Integer.parseInt(tempEight, 2);
-                    System.out.println(eightBit[indexEightBit]);
+                    System.out.print(eightBit[indexEightBit] + "|");
                     indexEightBit++;
                 }
-            }
-            
-            
-            
-            System.out.println("BIG ENDIAN & LITTLE ENDIAN");
-            System.out.println("REPRESENTATION FOR INTEGERS");
-            
-            int numberLength = numbers.length;
-            int row = 0, i=0;
-            while(numberLength > 0){
-                for(int column = 0; column < 4; column++){
-                    if(column!=3){ //Check place if rightest or not
-                        numbMemory[row][column] = 0;
-                    } else {
-                        numbMemory[row][column] = numbers[i];
-                        i++;
-                        numberLength--;
-                    }
-                    System.out.print(numbMemory[row][column] + "|");
-                }
-                row++;
                 System.out.println("");
             }
         } else { //For string inputs

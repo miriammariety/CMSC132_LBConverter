@@ -75,7 +75,7 @@ public class CMSC132_MP {
             }   
             
             
-            System.out.println("BIG ENDIAN REPRESENTATION");
+            System.out.println("BIG ENDIAN REPRESENTATION FOR STRINGS");
             //Initialization
             int i = 0, k = 0;
             int tempSize = inputSize;
@@ -92,7 +92,7 @@ public class CMSC132_MP {
             } 
             System.out.println("---------------");
             
-            System.out.println("LITTLE ENDIAN REPRESENTATION");
+            System.out.println("LITTLE ENDIAN REPRESENTATION FOR STRINGS");
             //Re initialize
             int index = 0, row =0;
             tempSize = inputSize;

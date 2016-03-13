@@ -49,11 +49,11 @@ public class CMSC132_MP {
                         tempBinary = tempBinary + "0";
                     }
                     binaryString[i] = tempBinary + binaryString[i];
+                    System.out.println(binaryString[i]);
                 }
                 
                 //Store 8 bits 
                 for(int index=0; index<binaryString[i].length();){
-                    System.out.print(binaryString[i].charAt(index));
                     int indexEightBit = 0;
                     String tempEight="";
                     for(int ctr=0; ctr < 8; ctr++){

@@ -6,6 +6,7 @@
 package cmsc132_mp;
 
 import java.util.Scanner;
+import java.util.Arrays;
 
 /**
  *
@@ -20,8 +21,8 @@ public class CMSC132_MP {
         System.out.print("Input: ");
         Scanner in = new Scanner(System.in);
         String temp = in.nextLine();
-        char[] input = temp.toCharArray();
-        char[] finalInput = new char[100];
+        char[] input = temp.toCharArray();  
+        char[] finalInput = new char[input.length];
         char[][] bigMemory = new char[input.length][4];
         char[][] smallMemory = new char[input.length][4];
         int inputSize = input.length;
@@ -29,7 +30,7 @@ public class CMSC132_MP {
         //Copy
         System.arraycopy(input, 0, finalInput, 0, input.length);
         
-        if((int) finalInput[0] >= 48 && (int) finalInput[0] <= 57){
+        if(check(finalInput)){
             //For integer inputs
             String[] ar = temp.split(" ");
             int [] numbers = new int[ar.length];
@@ -49,7 +50,6 @@ public class CMSC132_MP {
                         tempBinary = tempBinary + "0";
                     }
                     binaryString[i] = tempBinary + binaryString[i];
-                    System.out.println(binaryString[i]);
                 }
                 
                 //Store 8 bits 
@@ -69,16 +69,21 @@ public class CMSC132_MP {
         } else { //For string inputs
             
             //Check if multiple of four
-            while(!(inputSize % 4 == 0)){
-                finalInput[inputSize] = '0';
-                inputSize++;
-            }   
+            int x = 0;
+            while(x < inputSize) {
+                x += 4;
+            }
+            finalInput = new char[x];
+            Arrays.fill(finalInput,'0');
+
+            //Copy
+            System.arraycopy(input, 0, finalInput, 0, input.length);
             
             
             System.out.println("BIG ENDIAN REPRESENTATION FOR STRINGS");
             //Initialization
             int i = 0, k = 0;
-            int tempSize = inputSize;
+            int tempSize = finalInput.length;
             
             while(tempSize > 0){
                 for(int j=0; j < 4; j++){
@@ -95,7 +100,7 @@ public class CMSC132_MP {
             System.out.println("LITTLE ENDIAN REPRESENTATION FOR STRINGS");
             //Re initialize
             int index = 0, row =0;
-            tempSize = inputSize;
+            tempSize = finalInput.length;
             
             while(tempSize > 0){
                 int j = 0;
@@ -114,5 +119,13 @@ public class CMSC132_MP {
                 row++;
             }
         }
+    }
+
+    private static boolean check(char[] finalInput){
+        for(int i=0; i<finalInput.length; i++){
+            if(!((int) finalInput[i] >= 48 && (int) finalInput[i] <= 57))
+                return false;
+        }
+        return true;
     }
 }
